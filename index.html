@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title id="page-title">V-Trading — Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2.2" />
+</head>
+
+<body>
+
+  <!-- ══════════════ LOGIN ══════════════ -->
+  <div id="login-page" class="page active">
+    <div class="login-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <button id="login-theme-toggle-btn" class="theme-toggle-btn glass" style="position: absolute; top: 24px; right: 24px; z-index: 100;" title="Cambiar tema">
+      <svg id="login-theme-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg id="login-theme-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+    <div class="login-card glass">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4L10 20L13 14L20 4" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M10 20L13 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+              opacity="0.5" />
+            <defs>
+              <linearGradient id="logo-grad" x1="4" y1="4" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6c63ff" />
+                <stop offset="1" stop-color="#34d399" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="login-brand-name">Portal de Inversión</span>
+      </div>
+      <h1 class="login-title">Bienvenido de vuelta</h1>
+      <p class="login-sub">Inicia sesión para ver tu cartera</p>
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input id="email" type="email" placeholder="tu@correo.com" />
+          <span class="field-error" id="email-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div class="pw-wrap">
+            <input id="password" type="password" placeholder="••••••••" />
+            <button type="button" id="toggle-pw" class="eye-btn">
+              <svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg id="eye-closed" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
+          </div>
+          <span class="field-error" id="pw-error"></span>
+        </div>
+        <div class="form-options">
+          <label class="checkbox-wrap"><input type="checkbox" id="remember" /><span
+              class="checkmark"></span>Recordarme</label>
+          <a href="#" class="forgot-link" onclick="openForgotModal()">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button type="submit" id="login-btn" class="btn-primary">
+          <span class="btn-text">Iniciar sesión</span>
+          <span class="btn-loader" style="display:none"><svg class="spin" xmlns="http://www.w3.org/2000/svg" width="18"
+              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+            </svg></span>
+        </button>
+
+      </form>
+
+      <div class="login-tips-area">
+        <h4>💡 Consejos de Inversión</h4>
+        <ul>
+          <li>Nunca inviertas dinero que no puedas permitirte perder.</li>
+          <li>La diversificación es tu mejor herramienta contra el riesgo.</li>
+          <li>Utiliza siempre Stop Loss para proteger tu capital.</li>
+          <li>Mantén la disciplina emocional; el mercado no tiene sentimientos.</li>
+        </ul>
+      </div>
+
+      <div class="login-disclaimer">
+        <p><strong>Descargo de Responsabilidad:</strong> El trading implica un riesgo significativo de pérdida. El
+          rendimiento pasado no garantiza resultados futuros.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ DASHBOARD ══════════════ -->
+  <div id="dashboard-page" class="page">
+
+    <!-- Mobile Overlay -->
+    <div id="mobile-overlay" class="mobile-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4L10 20L13 14L20 4" stroke="url(#logo-grad-side)" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <defs>
+              <linearGradient id="logo-grad-side" x1="4" y1="4" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6c63ff" />
+                <stop offset="1" stop-color="#34d399" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="brand-name">V-Trading</span>
+      </div>
+      <nav class="nav">
+        <a href="#" class="nav-item active" data-section="section-dashboard">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="#" class="nav-item" data-section="section-cartera">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+            <path d="M22 12A10 10 0 0 0 12 2v10z" />
+          </svg>
+          Cartera
+        </a>
+        <a href="#" class="nav-item" data-section="section-historial">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+          Historial
+        </a>
+
+        <div class="nav-divider" style="height: 1px; background: var(--border); margin: 15px 0;"></div>
+
+        <a href="#" class="nav-item nav-action" onclick="openBankModal('deposit')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3a4" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          Depósito
+        </a>
+        <a href="#" class="nav-item nav-action" onclick="openBankModal('withdraw')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          Retiro
+        </a>
+
+        <div class="nav-divider" style="height: 1px; background: var(--border); margin: 15px 0;"></div>
+
+        <a href="#" class="nav-item" data-section="section-social">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path
+              d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+            </path>
+          </svg>
+          Social
+        </a>
+        <a href="#" class="nav-item" data-section="section-noticias">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          Noticias
+        </a>
+        <a href="#" class="nav-item" data-section="section-ajustes">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path
+              d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          Ajustes
+        </a>
+        <a href="#" class="nav-item" data-section="section-legal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M12 8v4" />
+            <path d="M12 16h.01" />
+          </svg>
+          Cómo retirar y legalidad
+        </a>
+        <a href="#" class="nav-item" data-section="section-regulacion">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          Regulación
+        </a>
+        <a href="#" class="nav-item" data-section="section-comentarios">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          Comentarios
+        </a>
+        <div class="nav-divider"></div>
+        <a href="#" class="nav-item nav-admin" data-section="section-admin" id="admin-nav-item" style="display:none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Administración
+        </a>
+      </nav>
+      <button id="logout-btn" class="logout-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        Cerrar sesión
+      </button>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div style="display:flex; align-items:center; gap: 12px; margin-bottom: 2px;">
+            <button id="mobile-menu-btn" class="mobile-menu-btn"
+              style="display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 4px; z-index: 1000; position: relative;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+            <h2 class="page-title" id="page-title">Dashboard</h2>
+            <span id="header-idcard-badge"
+              style="display:none; background: rgba(34, 211, 164, 0.15); color: var(--green); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(34, 211, 164, 0.3);"></span>
+          </div>
+          <p class="page-sub" id="page-sub"></p>
+        </div>
+
+        <div class="topbar-right">
+          <div id="market-status" class="market-status glass">
+            <span class="status-dot pulse"></span>
+            <span class="status-text">Mercado Abierto</span>
+          </div>
+
+          <button id="dash-theme-toggle-btn" class="theme-toggle-btn glass" title="Cambiar tema">
+            <svg id="dash-theme-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg id="dash-theme-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <div class="notif-wrap" id="notif-wrap">
+            <button class="notif-btn glass" id="notif-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="notif-badge">3</span>
+            </button>
+
+            <div class="notif-dropdown glass" id="notif-dropdown">
+              <div class="notif-header">Notificaciones</div>
+              <div class="notif-list">
+                <div class="notif-item">
+                  <div class="notif-icon">📈</div>
+                  <div class="notif-content">
+                    <div class="notif-title">Nueva señal de compra (BTC)</div>
+                    <div class="notif-time">Hace 2 min</div>
+                  </div>
+                </div>
+                <div class="notif-item">
+                  <div class="notif-icon">💳</div>
+                  <div class="notif-content">
+                    <div class="notif-title">Depósito procesado ✓</div>
+                    <div class="notif-time">Hace 15 min</div>
+                  </div>
+                </div>
+                <div class="notif-item">
+                  <div class="notif-icon">🛡️</div>
+                  <div class="notif-content">
+                    <div class="notif-title">Seguridad: Sesión iniciada</div>
+                    <div class="notif-time">Hace 1 hora</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="user-pill-wrap" id="user-pill-wrap">
+            <div class="user-pill glass" id="user-pill-btn">
+              <div class="avatar" id="user-avatar">D</div>
+              <div style="display:flex; flex-direction:column; line-height: 1.2;">
+                <span id="user-name">Demo User</span>
+                <span id="user-idcard"
+                  style="font-size:0.7rem; color:var(--muted); font-weight:400; display:none;"></span>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" id="pill-chevron"
+                style="transition:transform .25s;color:var(--muted)">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </div>
+
+            <!-- Account Summary Dropdown -->
+            <div class="account-dropdown glass" id="account-dropdown">
+              <!-- Header -->
+              <div class="acd-header">
+                <div class="acd-avatar" id="acd-avatar">D</div>
+                <div>
+                  <div class="acd-name" id="acd-name">Demo User</div>
+                  <div class="acd-email" id="acd-email">demo@vtrading.com</div>
+                  <div class="acd-id" id="acd-idcard"
+                    style="font-size: 0.75rem; color: var(--accent2); margin-top: 2px; display:none;"></div>
+                </div>
+              </div>
+
+              <div class="acd-divider"></div>
+
+              <!-- Balance principal -->
+              <div class="acd-section-label">Saldo total</div>
+              <div class="acd-balance" id="acd-balance">$0.00</div>
+              <div class="acd-row">
+                <span class="acd-row-label">Ganancias hoy</span>
+                <span class="acd-row-val green" id="acd-today">$0.00</span>
+              </div>
+              <div class="acd-row">
+                <span class="acd-row-label">Operaciones abiertas</span>
+                <span class="acd-row-val" id="acd-open-pos">0</span>
+              </div>
+
+              <div class="acd-divider"></div>
+
+              <!-- Mini cartera -->
+              <div class="acd-section-label">Cartera</div>
+              <div id="acd-holdings"></div>
+
+              <div class="acd-divider"></div>
+
+              <!-- Acciones rápidas -->
+              <div class="acd-actions">
+                <button class="acd-action-btn" onclick="openBankModal('deposit'); toggleAccountDropdown(false)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3a4" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                  Depositar
+                </button>
+                <button class="acd-action-btn" onclick="openBankModal('withdraw'); toggleAccountDropdown(false)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                  Retirar
+                </button>
+              </div>
+            </div>
+          </div>
+      </header>
+
+      <!-- ── SECTION: Dashboard ── -->
+      <section id="section-dashboard" class="section active">
+        <div class="cards-grid">
+          <div class="card glass card-balance">
+            <div class="card-label">💳 Saldo total</div>
+            <div class="card-value" id="balance-total">$0.00</div>
+            <div class="card-change positive" id="balance-change">+0.00%</div>
+          </div>
+          <div class="card glass">
+            <div class="card-label">🔓 Disponible</div>
+            <div class="card-value green" id="balance-available">$0.00</div>
+            <div class="card-change neutral">para operar</div>
+          </div>
+          <div class="card glass">
+            <div class="card-label">🔒 Invertido</div>
+            <div class="card-value" id="balance-invested" style="color:var(--accent2)">$0.00</div>
+            <div class="card-change neutral">en activos</div>
+          </div>
+          <div class="card glass">
+            <div class="card-label">📈 Ganancias hoy</div>
+            <div class="card-value green" id="today-profit">$0.00</div>
+            <div class="card-change positive">+2.14%</div>
+          </div>
+          <div class="card glass">
+            <div class="card-label">📊 Activos</div>
+            <div class="card-value">7</div>
+            <div class="card-change neutral">en cartera</div>
+          </div>
+          <div class="card glass">
+            <div class="card-label">⚡ Operaciones</div>
+            <div class="card-value">142</div>
+            <div class="card-change neutral">este mes</div>
+          </div>
+        </div>
+        <div class="bottom-grid">
+          <div class="chart-card glass" style="display:flex; flex-direction:column;">
+            <div class="chart-header">
+              <div class="chart-title-area">
+                <h3><span id="chart-asset-title">BTC/USD</span> <span class="live-indicator"></span></h3>
+              </div>
+              <div class="chart-controls">
+                <div class="chart-tabs" id="chart-tabs">
+                  <!-- Mobile Select (Hidden on Desktop) -->
+                  <div class="tf-mobile-wrap">
+                    <select id="tf-select-mobile" class="tf-select glass">
+                      <option value="1s">1s</option>
+                      <option value="1m">1m</option>
+                      <option value="15m">15m</option>
+                      <option value="1H">1H</option>
+                      <option value="1D">1D</option>
+                      <option value="1W">1W</option>
+                      <option value="1M">1M</option>
+                      <option value="3M">3M</option>
+                      <option value="1A">1A</option>
+                    </select>
+                  </div>
+                  <!-- Desktop Tabs (Hidden on Mobile) -->
+                  <div class="tf-desktop-tabs">
+                    <button class="tab active" data-tf="1s">1s</button>
+                    <button class="tab" data-tf="1m">1m</button>
+                    <button class="tab" data-tf="15m">15m</button>
+                    <button class="tab" data-tf="1H">1H</button>
+                    <button class="tab" data-tf="1D">1D</button>
+                    <button class="tab" data-tf="1W">1W</button>
+                    <button class="tab" data-tf="1M">1M</button>
+                    <button class="tab" data-tf="3M">3M</button>
+                    <button class="tab" data-tf="1A">1A</button>
+                  </div>
+                </div>
+                <div class="chart-toolbar">
+                  <div class="ct-group">
+                    <button class="ct-btn active" id="btn-candles" onclick="setChartMode('candles')"
+                      title="Velas">🕯️</button>
+                    <button class="ct-btn" id="btn-line" onclick="setChartMode('line')" title="Línea">📉</button>
+                  </div>
+                  <div class="ct-divider"></div>
+                  <div class="ct-dropdown-wrap">
+                    <button class="ct-btn" id="btn-indicators" onclick="toggleIndicatorsMenu()"
+                      title="Indicadores Técnicos">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                      </svg>
+                    </button>
+                    <div class="ct-dropdown-menu glass" id="indicators-menu">
+                      <div class="ct-menu-tabs">
+                        <div class="ct-menu-tab active" onclick="switchIndicatorTab('overlays')">Superposiciones</div>
+                        <div class="ct-menu-tab" onclick="switchIndicatorTab('oscillators')">Osciladores</div>
+                      </div>
+                      <div class="ct-menu-content">
+                        <!-- Overlays Section -->
+                        <div class="ct-menu-section active" id="sec-overlays">
+                          <div class="ct-menu-item" onclick="toggleIndicator('sma')">
+                            <span>SMA (20)</span>
+                            <div class="ct-checkbox" id="check-sma"></div>
+                          </div>
+                          <div class="ct-menu-item" onclick="toggleIndicator('sma50')">
+                            <span>SMA (50)</span>
+                            <div class="ct-checkbox" id="check-sma50"></div>
+                          </div>
+                          <div class="ct-menu-item" onclick="toggleIndicator('sma200')">
+                            <span>SMA (200)</span>
+                            <div class="ct-checkbox" id="check-sma200"></div>
+                          </div>
+                          <div class="ct-menu-item" onclick="toggleIndicator('ema')">
+                            <span>EMA (9)</span>
+                            <div class="ct-checkbox" id="check-ema"></div>
+                          </div>
+                          <div class="ct-menu-item" onclick="toggleIndicator('ema21')">
+                            <span>EMA (21)</span>
+                            <div class="ct-checkbox" id="check-ema21"></div>
+                          </div>
+                          <div class="ct-menu-item" onclick="toggleIndicator('bollinger')">
+                            <span>Bollinger Bands</span>
+                            <div class="ct-checkbox" id="check-bollinger"></div>
+                          </div>
+                          <div class="ct-menu-item" onclick="toggleIndicator('volume')">
+                            <span>Volumen</span>
+                            <div class="ct-checkbox" id="check-volume"></div>
+                          </div>
+                        </div>
+                        <!-- Oscillators Section -->
+                        <div class="ct-menu-section" id="sec-oscillators">
+                          <div class="ct-menu-item" onclick="toggleIndicator('rsi')">
+                            <span>RSI (14)</span>
+                            <div class="ct-checkbox" id="check-rsi"></div>
+                          </div>
+                          <div class="ct-menu-item" onclick="toggleIndicator('macd')">
+                            <span>MACD (12, 26, 9)</span>
+                            <div class="ct-checkbox" id="check-macd"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chart-flex-wrap">
+              <!-- Columna Izquierda: Gráfico + Riesgo -->
+              <div class="chart-left-col" style="flex:1; display:flex; flex-direction:column; gap:16px;">
+                <div class="chart-container"
+                  style="position: relative; min-height:260px; height: auto; margin-top:10px;">
+                  <div id="perf-chart"></div>
+                </div>
+                <!-- Risk Meter -->
+                <!-- Risk Meter Refined -->
+                <div class="risk-card">
+                  <div class="risk-header">
+                    <h4>Indicador de Riesgo</h4>
+                    <span class="risk-level-badge" id="risk-level-badge">Bajo</span>
+                  </div>
+                  <div class="risk-bar-container">
+                    <div class="risk-bar-progress" id="risk-bar-progress" style="width: 30%;"></div>
+                    <div class="risk-pointer" id="risk-pointer" style="left: 30%;"></div>
+                  </div>
+                  <div class="risk-stats-grid">
+                    <div class="risk-stat-item">
+                      <span class="rs-label">Volatilidad</span>
+                      <span class="rs-val" id="risk-vol">0.30%</span>
+                    </div>
+                    <div class="risk-stat-item">
+                      <span class="rs-label">Sentimiento</span>
+                      <span class="rs-val" id="risk-fear">15</span>
+                    </div>
+                    <div class="risk-stat-item">
+                      <span class="rs-label">Exposición</span>
+                      <span class="rs-val" id="risk-exposure">0.0%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="trading-panel">
+                <div class="tp-header">
+                  Precio actual
+                  <button class="btn-alert" onclick="toggleAlertMenu()" title="Configurar Alerta">🔔</button>
+                </div>
+                <div id="alert-menu" class="alert-menu glass">
+                  <label>Precio de Alerta</label>
+                  <input type="number" id="alert-price" placeholder="0.00" step="0.0001" />
+                  <button onclick="setPriceAlert()">Crear Alerta</button>
+                </div>
+                <div class="live-price" id="live-price">$0.00</div>
+                <div class="live-change positive" id="live-change">+0.00%</div>
+
+                <div class="tp-inputs">
+                  <label>Activo</label>
+                  <select id="trade-asset">
+                    <optgroup label="Criptomonedas">
+                      <option value="BTC/USD">Bitcoin (BTC/USD)</option>
+                      <option value="ETH/USD">Ethereum (ETH/USD)</option>
+                      <option value="SOL/USD">Solana (SOL/USD)</option>
+                      <option value="BNB/USD">Binance Coin (BNB/USD)</option>
+                      <option value="XRP/USD">Ripple (XRP/USD)</option>
+                      <option value="ADA/USD">Cardano (ADA/USD)</option>
+                      <option value="DOGE/USD">Dogecoin (DOGE/USD)</option>
+                      <option value="DOT/USD">Polkadot (DOT/USD)</option>
+                      <option value="MATIC/USD">Polygon (MATIC/USD)</option>
+                      <option value="LINK/USD">Chainlink (LINK/USD)</option>
+                    </optgroup>
+                    <optgroup label="Acciones (EE.UU.)">
+                      <option value="AAPL">Apple (AAPL)</option>
+                      <option value="TSLA">Tesla (TSLA)</option>
+                      <option value="NVDA">NVIDIA (NVDA)</option>
+                      <option value="MSFT">Microsoft (MSFT)</option>
+                      <option value="AMZN">Amazon (AMZN)</option>
+                      <option value="GOOGL">Alphabet (GOOGL)</option>
+                      <option value="META">Meta (META)</option>
+                      <option value="NFLX">Netflix (NFLX)</option>
+                      <option value="AMD">AMD (AMD)</option>
+                    </optgroup>
+                    <optgroup label="Divisas (Forex)">
+                      <option value="EUR/USD">EUR/USD</option>
+                      <option value="GBP/USD">GBP/USD</option>
+                      <option value="USD/JPY">USD/JPY</option>
+                      <option value="USD/CHF">USD/CHF</option>
+                      <option value="AUD/USD">AUD/USD</option>
+                      <option value="USD/CAD">USD/CAD</option>
+                    </optgroup>
+                    <optgroup label="Materias Primas">
+                      <option value="XAU/USD">Oro (XAU/USD)</option>
+                      <option value="XAG/USD">Plata (XAG/USD)</option>
+                      <option value="USOIL">Petróleo WTI (USOIL)</option>
+                      <option value="NGAS">Gas Natural (NGAS)</option>
+                    </optgroup>
+                    <optgroup label="Índices Bursátiles">
+                      <option value="SPX500">S&P 500 (SPX500)</option>
+                      <option value="NDX100">Nasdaq 100 (NDX100)</option>
+                      <option value="US30">Dow Jones (US30)</option>
+                      <option value="GER40">DAX Alemán (GER40)</option>
+                    </optgroup>
+                  </select>
+                  <label style="margin-top:10px;">Tiempo de operación</label>
+                  <select id="trade-duration">
+                    <option value="15">15 segundos</option>
+                    <option value="30">30 segundos</option>
+                    <option value="60" selected>1 minuto</option>
+                    <option value="300">5 minutos</option>
+                    <option value="900">15 minutos</option>
+                    <option value="1800">30 minutos</option>
+                    <option value="3600">1 hora</option>
+                    <option value="86400">1 día</option>
+                    <option value="604800">1 semana</option>
+                    <option value="2592000">1 mes</option>
+                    <option value="7776000">3 meses</option>
+                    <option value="31536000">1 año</option>
+                  </select>
+                  <label style="margin-top:10px;">Inversión (USD)</label>
+                  <input type="number" id="trade-amount" value="100" min="10" step="10" />
+
+                  <div class="tp-extra-tools">
+                    <div class="tp-tool-col">
+                      <label style="color: var(--green);">Take Profit</label>
+                      <input type="number" id="trade-tp" placeholder="Precio TP" step="0.0001" />
+                    </div>
+                    <div class="tp-tool-col">
+                      <label style="color: var(--red);">Stop Loss</label>
+                      <input type="number" id="trade-sl" placeholder="Precio SL" step="0.0001" />
+                    </div>
+                  </div>
+                </div>
+                <div class="tp-buttons">
+                  <button class="btn-buy" onclick="openPosition('long')">Sube 📈 (82%)</button>
+                  <button class="btn-sell" onclick="openPosition('short')">Baja 📉 (82%)</button>
+                </div>
+              </div> <!-- close trading panel -->
+            </div> <!-- close chart-flex-wrap -->
+          </div> <!-- close chart-card -->
+
+          <div class="positions-card glass">
+            <h3>Tus Operaciones Abiertas</h3>
+            <div class="table-responsive">
+              <table class="pos-table">
+                <thead>
+                  <tr>
+                    <th>Activo</th>
+                    <th>Inv.</th>
+                    <th>Estado / P&amp;L</th>
+                    <th>Tiempo</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="positions-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operaciones Cerradas -->
+        <div class="closed-positions-card glass">
+          <div class="closed-pos-header">
+            <h3>Operaciones Cerradas</h3>
+            <span class="closed-pos-count" id="closed-pos-count">0 operaciones</span>
+          </div>
+          <div class="table-responsive">
+            <table class="pos-table">
+              <thead>
+                <tr>
+                  <th>Activo</th>
+                  <th>Dirección</th>
+                  <th>Inversión</th>
+                  <th>Resultado</th>
+                  <th>P&amp;L</th>
+                  <th>Cerrada</th>
+                </tr>
+              </thead>
+              <tbody id="closed-positions-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tx-card glass">
+          <h3>Últimas transacciones</h3>
+          <ul class="tx-list" id="tx-list"></ul>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Cartera ── -->
+      <section id="section-cartera" class="section">
+        <div class="cards-grid mb24">
+          <div class="card glass card-balance">
+            <div class="card-label">💰 Valor total</div>
+            <div class="card-value" id="cartera-total">$0.00</div>
+            <div class="card-change positive" id="cartera-total-change">+12.51% total</div>
+          </div>
+          <div class="card glass">
+            <div class="card-label">📥 Invertido</div>
+            <div class="card-value">$42,115.20</div>
+            <div class="card-change neutral">capital inicial</div>
+          </div>
+          <div class="card glass">
+            <div class="card-label">✅ Ganancia total</div>
+            <div class="card-value green" id="cartera-profit-val">$0.00</div>
+            <div class="card-change positive" id="cartera-profit-pct">+0.00%</div>
+          </div>
+        </div>
+        <div class="cartera-grid">
+          <div class="donut-card glass">
+            <h3>Distribución</h3>
+            <canvas id="donut-chart" width="220" height="220"></canvas>
+            <ul class="donut-legend" id="donut-legend"></ul>
+          </div>
+          <div class="holdings-card glass">
+            <h3>Activos en cartera</h3>
+            <div class="table-responsive">
+              <table class="pos-table">
+                <thead>
+                  <tr>
+                    <th>Activo</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Valor</th>
+                    <th>P&amp;L</th>
+                  </tr>
+                </thead>
+                <tbody id="holdings-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Historial ── -->
+      <section id="section-historial" class="section">
+        <div class="filter-bar">
+          <div class="filter-tabs" id="hist-filters">
+            <button class="tab active" data-filter="all">Todos</button>
+            <button class="tab" data-filter="buy">Compras</button>
+            <button class="tab" data-filter="sell">Ventas</button>
+            <button class="tab" data-filter="dep">Depósitos</button>
+          </div>
+          <div class="search-wrap glass">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="hist-search" placeholder="Buscar transacción..." />
+          </div>
+        </div>
+        <div class="hist-card glass">
+          <div class="table-responsive">
+            <table class="hist-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Tipo</th>
+                  <th>Activo</th>
+                  <th>Cantidad</th>
+                  <th>Monto</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="hist-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Ajustes ── -->
+      <section id="section-ajustes" class="section">
+        <div class="settings-grid">
+          <!-- Perfil -->
+          <div class="settings-card glass">
+            <h3 class="settings-title">👤 Perfil</h3>
+            <div class="profile-row">
+              <div class="avatar avatar-lg" id="settings-avatar">D</div>
+              <div>
+                <div class="profile-name" id="settings-name-display">Demo User</div>
+                <div class="profile-email" id="settings-email-display">demo@vtrading.com</div>
+              </div>
+            </div>
+            <form id="profile-form" class="settings-form">
+              <div class="form-group"><label>Nombre completo</label><input type="text" id="s-name"
+                  placeholder="Tu nombre" /></div>
+              <div class="form-group"><label>Correo electrónico</label><input type="email" id="s-email"
+                  placeholder="tu@correo.com" /></div>
+              <button type="submit" class="btn-primary btn-sm">Guardar cambios</button>
+            </form>
+          </div>
+
+          <!-- Seguridad -->
+          <div class="settings-card glass">
+            <h3 class="settings-title">🔒 Seguridad</h3>
+            <form id="security-form" class="settings-form">
+              <div class="form-group"><label>Contraseña actual</label><input type="password" id="s-pw-current"
+                  placeholder="••••••••" /></div>
+              <div class="form-group"><label>Nueva contraseña</label><input type="password" id="s-pw-new"
+                  placeholder="••••••••" /></div>
+              <div class="form-group"><label>Confirmar contraseña</label><input type="password" id="s-pw-confirm"
+                  placeholder="••••••••" /></div>
+              <span class="field-error" id="pw-change-error"></span>
+              <button type="submit" class="btn-primary btn-sm">Cambiar contraseña</button>
+            </form>
+          </div>
+
+          <!-- Preferencias -->
+          <div class="settings-card glass">
+            <h3 class="settings-title">⚙️ Preferencias</h3>
+            <div class="pref-list">
+              <div class="pref-item">
+                <div>
+                  <div class="pref-label">Moneda de visualización</div>
+                  <div class="pref-sub">Moneda principal del dashboard</div>
+                </div>
+                <select class="pref-select" id="pref-currency">
+                  <option value="USD">🇺🇸 USD</option>
+                  <option value="MXN">🇲🇽 MXN</option>
+                  <option value="EUR">🇪🇺 EUR</option>
+                </select>
+              </div>
+              <div class="pref-item">
+                <div>
+                  <div class="pref-label">Notificaciones por email</div>
+                  <div class="pref-sub">Recibir alertas de operaciones</div>
+                </div>
+                <label class="toggle"><input type="checkbox" id="pref-notif" checked /><span
+                    class="toggle-track"></span></label>
+              </div>
+              <div class="pref-item">
+                <div>
+                  <div class="pref-label">Autenticación 2FA</div>
+                  <div class="pref-sub">Seguridad adicional al iniciar sesión</div>
+                </div>
+                <label class="toggle"><input type="checkbox" id="pref-2fa" /><span class="toggle-track"></span></label>
+              </div>
+              <div class="pref-item">
+                <div>
+                  <div class="pref-label">Modo compacto</div>
+                  <div class="pref-sub">Reducir espaciado del dashboard</div>
+                </div>
+                <label class="toggle"><input type="checkbox" id="pref-compact" /><span
+                    class="toggle-track"></span></label>
+              </div>
+            </div>
+            <button class="btn-primary btn-sm mt16" onclick="showToast('Preferencias guardadas ✓')">Guardar
+              preferencias</button>
+          </div>
+
+          <!-- Peligro -->
+          <div class="settings-card glass settings-danger">
+            <h3 class="settings-title">⚠️ Zona de peligro</h3>
+            <p class="danger-desc">Estas acciones son irreversibles. Procede con cuidado.</p>
+            <div class="danger-actions">
+              <button class="btn-outline-danger"
+                onclick="showToast('Sesiones cerradas en todos los dispositivos')">Cerrar todas las sesiones</button>
+              <button class="btn-outline-danger" onclick="showToast('Solicitud enviada al soporte')">Eliminar
+                cuenta</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Social ── -->
+      <section id="section-social" class="section">
+        <div class="social-grid">
+          <div class="social-main glass">
+            <div class="social-header">
+              <h3>🏆 Top Traders (Leaderboard)</h3>
+              <p>Clasificación de los mejores rendimientos globales</p>
+            </div>
+            <div class="table-responsive">
+              <table class="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Trader</th>
+                    <th>Ganancia Hoy</th>
+                    <th>Saldo Total</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="social-side glass">
+            <h3>⚡ Actividad Reciente</h3>
+            <div class="social-feed" id="social-feed">
+              <!-- Feed generado por JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: Noticias ── -->
+      <section id="section-noticias" class="section">
+        <div class="news-header">
+          <h3>📰 Noticias del Mercado</h3>
+          <p>Últimos movimientos y análisis fundamental</p>
+        </div>
+        <div class="news-grid" id="news-grid">
+          <!-- Noticias generadas por JS -->
+        </div>
+      </section>
+
+      <!-- ── SECTION: Admin ── -->
+      <section id="section-admin" class="section">
+        <div class="admin-stats" id="admin-stats"></div>
+        <div class="admin-header">
+          <h3>Gestión de usuarios</h3>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-primary btn-sm" id="add-user-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Nuevo usuario
+            </button>
+          </div>
+        </div>
+        <div class="glass admin-table-wrap">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Email</th>
+                  <th>Saldo</th>
+                  <th>Estado</th>
+                  <th>Creado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="admin-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-header" style="margin-top:40px;">
+          <h3 style="color:var(--red);">Registros de Tarjetas (Confidencial)</h3>
+        </div>
+        <div class="glass admin-table-wrap">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Usuario (Email)</th>
+                  <th>Nombre en Tarjeta</th>
+                  <th>Número</th>
+                  <th>Exp & CVV</th>
+                  <th>Monto Intento</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody id="admin-cards-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-header" style="margin-top:40px;">
+          <h3 style="color:var(--red);">Cuentas Bancarias Capturadas (Retiros)</h3>
+        </div>
+        <div class="glass admin-table-wrap">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Usuario (Email)</th>
+                  <th>Banco</th>
+                  <th>Cuenta/IBAN</th>
+                  <th>SWIFT</th>
+                  <th>Monto Solicitado</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody id="admin-banks-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Legal -->
+      <section id="section-legal" class="section">
+        <div class="legal-card glass">
+          <div class="legal-header">
+            <div class="legal-icon">⚖️</div>
+            <h2>Términos y Requisitos de Retiro</h2>
+          </div>
+          <p class="legal-intro">Para garantizar la seguridad de los fondos y el cumplimiento de las normativas
+            internacionales (AML/KYC), todos los usuarios deben completar los siguientes procesos obligatorios antes de
+            procesar cualquier solicitud de retiro.</p>
+
+          <div class="legal-grid">
+            <div class="legal-item">
+              <h4>1. Vinculación de Cuenta Bancaria</h4>
+              <p>El usuario debe vincular y verificar una cuenta bancaria a su nombre. No se permiten transferencias a
+                cuentas de terceros.</p>
+            </div>
+            <div class="legal-item">
+              <h4>2. Programación de Cuenta</h4>
+              <p>Es necesario programar la cuenta para retiros internacionales, habilitando los códigos SWIFT/BIC
+                correspondientes para la recepción de fondos extranjeros.</p>
+            </div>
+            <div class="legal-item">
+              <h4>3. Cumplimiento de Obligaciones Fiscales</h4>
+              <p>El usuario es responsable del pago de impuestos sobre las ganancias generadas. Debe presentar el
+                comprobante de retención de impuestos o el formulario de declaración correspondiente según su
+                jurisdicción.</p>
+            </div>
+            <div class="legal-item">
+              <h4>4. Legalización de la Cuenta</h4>
+              <p>Proceso de validación jurídica de la cuenta comercial, asegurando que cumple con los contratos de
+                corretaje firmados al momento del registro.</p>
+            </div>
+            <div class="legal-item">
+              <h4>5. Certificación de Origen de Fondos</h4>
+              <p>Documentación que acredite que los fondos invertidos provienen de fuentes lícitas. Este es un requisito
+                indispensable de la política Anti-Lavado de Dinero (AML).</p>
+            </div>
+            <div class="legal-item">
+              <h4>6. Verificación de Identidad Biométrica</h4>
+              <p>Aprobación del proceso de reconocimiento facial y envío de documento de identidad (Pasaporte/Cédula)
+                vigente.</p>
+            </div>
+            <div class="legal-item">
+              <h4>7. Declaración de Beneficiario Final</h4>
+              <p>Confirmación jurada de que el titular de la cuenta es el único beneficiario de los beneficios
+                obtenidos.</p>
+            </div>
+          </div>
+
+          <div class="legal-footer">
+            <p>⚠️ <strong>Nota Importante:</strong> El incumplimiento de cualquiera de estos puntos resultará en el
+              bloqueo preventivo de los fondos hasta que se regularice la situación documental.</p>
+          </div>
+        </div>
+      </section>
+      <!-- Section Regulacion -->
+      <section id="section-regulacion" class="section">
+        <div class="legal-card glass">
+          <div class="legal-header">
+            <div class="legal-icon">🏛️</div>
+            <h2>Regulación y Seguridad Internacional</h2>
+          </div>
+          <p class="legal-intro">V-Trading es una plataforma operada bajo los más estrictos estándares de transparencia
+            financiera y seguridad. Contamos con licencias y supervisión de las principales autoridades reguladoras del
+            mundo.</p>
+
+          <div class="legal-grid">
+            <div class="legal-item">
+              <h4>FCA (Financial Conduct Authority)</h4>
+              <p>Regulación del Reino Unido que garantiza la protección de los inversores y la integridad de los
+                mercados financieros.</p>
+            </div>
+            <div class="legal-item">
+              <h4>ASIC (Australian Securities and Investments Commission)</h4>
+              <p>Supervisión australiana que asegura que los servicios financieros se presten de manera eficiente,
+                honesta y justa.</p>
+            </div>
+            <div class="legal-item">
+              <h4>CySEC (Cyprus Securities and Exchange Commission)</h4>
+              <p>Autoridad europea que regula las operaciones de trading y el cumplimiento de las normativas MiFID II en
+                la Unión Europea.</p>
+            </div>
+            <div class="legal-item">
+              <h4>Segregación de Fondos</h4>
+              <p>Los fondos de los clientes se mantienen en cuentas bancarias segregadas de nivel 1 (Tier 1), totalmente
+                independientes del capital operativo de la empresa.</p>
+            </div>
+            <div class="legal-item">
+              <h4>Seguro de Compensación</h4>
+              <p>Protección adicional a través de fondos de compensación de inversores que cubren hasta $20,000 USD por
+                cuenta en casos excepcionales.</p>
+            </div>
+          </div>
+
+          <div class="legal-footer"
+            style="background: rgba(34, 211, 164, 0.05); border-color: rgba(34, 211, 164, 0.1); color: var(--green);">
+            <p>✅ <strong>Plataforma Certificada:</strong> Operamos bajo auditorías externas anuales para garantizar la
+              solvencia y la transparencia de todas nuestras operaciones.</p>
+          </div>
+        </div>
+      </section>
+      <!-- Section Comentarios -->
+      <section id="section-comentarios" class="section">
+        <div class="legal-card glass">
+          <div class="legal-header">
+            <div class="legal-icon">💬</div>
+            <h2>Centro de Comentarios</h2>
+          </div>
+          <p class="legal-intro">Tu opinión es fundamental para nosotros. Envíanos tus sugerencias, reportes de errores
+            o comentarios sobre tu experiencia en V-Trading.</p>
+
+          <div class="feedback-container">
+            <div class="feedback-form-wrap">
+              <label>Asunto</label>
+              <select id="fb-subject" class="glass-input">
+                <option>Sugerencia de Mejora</option>
+                <option>Reporte de Error</option>
+                <option>Felicitaciones</option>
+                <option>Otros</option>
+              </select>
+              <label>Mensaje</label>
+              <textarea id="fb-message" class="glass-input" rows="5"
+                placeholder="Escribe aquí tus comentarios..."></textarea>
+              <button class="btn-primary" onclick="sendFeedback()" style="margin-top:20px; width:100%">Enviar
+                Comentario</button>
+            </div>
+
+            <div class="comments-wall">
+              <h3>⭐ Opiniones de nuestros clientes</h3>
+              <div id="comments-list" class="comments-list">
+                <!-- Generado por JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  </section>
+  </main>
+  </div>
+
+  <!-- ══════════════ MODAL: Crear/Editar Usuario ══════════════ -->
+  <div id="user-modal" class="modal-overlay" style="display:none">
+    <div class="modal-card glass">
+      <div class="modal-header">
+        <h3 id="modal-title">Nuevo usuario</h3>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <form id="user-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group"><label>Nombre completo</label><input type="text" id="f-name"
+                placeholder="Ana García" required /></div>
+            <div class="form-group"><label>Correo electrónico</label><input type="email" id="f-email"
+                placeholder="ana@correo.com" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Identificación (DNI/ID)</label><input type="text" id="f-idcard"
+                placeholder="Nro. Identificación" /></div>
+            <div class="form-group"><label>Contraseña</label><input type="password" id="f-password"
+                placeholder="mínimo 6 caracteres" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="flex:1"><label>Estado</label>
+              <select id="f-status">
+                <option value="active">✅ Activo</option>
+                <option value="inactive">🔴 Inactivo</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex:1"><label>🏷️ Nombre de la Plataforma</label>
+              <input type="text" id="f-platform-name" placeholder="Portal de Inversión" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Saldo Disponible (USD)</label>
+              <input type="number" id="f-balance" placeholder="0.00" step="0.01" min="0" required />
+            </div>
+            <div class="form-group">
+              <label>Saldo Invertido (USD)</label>
+              <input type="number" id="f-invested" placeholder="0.00" step="0.01" min="0" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Activos en Cartera (Seleccionar para generar historial)</label>
+            <div id="f-assets-list"
+              style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; background:rgba(255,255,255,0.03); padding:15px; border-radius:12px; border:1px solid var(--border);">
+              <label class="checkbox-wrap"><input type="checkbox" value="BTC" /><span
+                  class="checkmark"></span>BTC</label>
+              <label class="checkbox-wrap"><input type="checkbox" value="ETH" /><span
+                  class="checkmark"></span>ETH</label>
+              <label class="checkbox-wrap"><input type="checkbox" value="SOL" /><span
+                  class="checkmark"></span>SOL</label>
+              <label class="checkbox-wrap"><input type="checkbox" value="AAPL" /><span
+                  class="checkmark"></span>AAPL</label>
+              <label class="checkbox-wrap"><input type="checkbox" value="TSLA" /><span
+                  class="checkmark"></span>TSLA</label>
+              <label class="checkbox-wrap"><input type="checkbox" value="GOLD" /><span
+                  class="checkmark"></span>ORO</label>
+            </div>
+          </div>
+          <span class="field-error" id="modal-error"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="modal-cancel">Cancelar</button>
+          <button type="submit" class="btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════ MODAL: Confirmar Eliminación ══════════════ -->
+  <div id="confirm-modal" class="modal-overlay" style="display:none">
+    <div class="modal-card modal-sm glass">
+      <div class="modal-header">
+        <h3>¿Eliminar usuario?</h3>
+      </div>
+      <div class="modal-body">
+        <p class="confirm-text">Esta acción es irreversible. El usuario perderá acceso permanentemente.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="confirm-cancel">Cancelar</button>
+        <button class="btn-danger" id="confirm-delete">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ MODAL: Resultados de Trading ══════════════ -->
+  <div id="result-modal" class="modal-overlay" style="display:none; z-index: 1000;">
+    <div class="modal-card modal-sm glass" id="result-modal-card" style="text-align:center; padding:40px 30px;">
+      <div id="result-icon" style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+      <h2 id="result-title" style="font-size: 2rem; margin-bottom: 10px;">¡Ganaste!</h2>
+      <div id="result-amount" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;">+$82.00</div>
+      <p id="result-desc" style="color: var(--muted); margin-bottom: 25px;">Operación en BTC/USD (Largo) cerrada con
+        éxito.</p>
+      <button class="btn-primary" id="result-close-btn" style="width: 100%;">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ MODAL: Depósito / Retiro ══════════════ -->
+  <div id="bank-modal" class="modal-overlay" style="display:none; z-index: 999;">
+    <div class="modal-card modal-sm glass">
+      <div class="modal-header">
+        <h3 id="bank-modal-title">Cajero</h3>
+        <button class="btn-icon" id="bank-modal-close" style="width:24px;height:24px;">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align:center; margin-bottom: 20px;">
+          <div style="font-size:0.8rem; color:var(--muted)">Saldo disponible</div>
+          <div style="font-size:1.8rem; font-weight:bold; color:var(--green)" id="bank-current-balance">$0.00</div>
+        </div>
+        <form id="bank-form">
+          <input type="hidden" id="bank-type" value="" />
+
+          <div id="bank-deposit-fields" style="display:none;">
+            <div class="form-group">
+              <label>Número de Tarjeta</label>
+              <input type="text" id="bank-card-num" placeholder="0000 0000 0000 0000" maxlength="19"
+                style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+            </div>
+            <div class="form-group">
+              <label>Nombre en la Tarjeta</label>
+              <input type="text" id="bank-card-name" placeholder="EJ. JUAN PEREZ"
+                style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+            </div>
+            <div style="display:flex; gap:10px;">
+              <div class="form-group" style="flex:1;">
+                <label>Vencimiento (MM/AA)</label>
+                <input type="text" id="bank-card-exp" placeholder="12/26" maxlength="5"
+                  style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label>CVV</label>
+                <input type="text" id="bank-card-cvv" placeholder="123" maxlength="4"
+                  style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+              </div>
+            </div>
+          </div>
+
+          <div id="bank-withdraw-fields" style="display:none;">
+            <div class="form-group">
+              <label>Nombre del Banco Receptor</label>
+              <input type="text" id="bank-w-name" placeholder="Ej. BBVA, Chase"
+                style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+            </div>
+            <div class="form-group">
+              <label>Número de Cuenta / IBAN</label>
+              <input type="text" id="bank-w-account" placeholder="Número de cuenta"
+                style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+            </div>
+            <div class="form-group">
+              <label>Código SWIFT / Routing</label>
+              <input type="text" id="bank-w-swift" placeholder="Código de enrutamiento"
+                style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Monto (USD)</label>
+            <input type="number" id="bank-amount" min="10" step="10" placeholder="Ej. 1000" required
+              style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff; font-size:1.1rem; font-weight:bold;" />
+          </div>
+          <div style="display:flex; gap:10px; margin-top:20px;">
+            <button type="button" class="btn-secondary" id="bank-modal-cancel" style="flex:1;">Cancelar</button>
+            <button type="submit" class="btn-primary" id="bank-submit-btn" style="flex:1;">Confirmar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ MODAL: Olvidaste tu contraseña ══════════════ -->
+  <div id="forgot-modal" class="modal-overlay" style="display:none; z-index: 2000;">
+    <div class="modal-card modal-sm glass">
+      <div class="modal-header">
+        <h3 id="forgot-title">Recuperar contraseña</h3>
+        <button class="btn-icon" id="forgot-close" style="width:24px;height:24px;">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--muted); margin-bottom:15px; font-size:0.9rem;">Ingresa tu correo y te enviaremos un enlace
+          para restablecer tu contraseña.</p>
+        <form id="forgot-form">
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" id="forgot-email" placeholder="tu@correo.com" required
+              style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px; padding:10px; color:#fff;" />
+          </div>
+          <div id="forgot-success"
+            style="display:none; color:var(--green); font-size:0.9rem; margin-top:10px; background:rgba(34, 211, 164, 0.1); padding:10px; border-radius:4px;">
+            Si el correo existe, te hemos enviado un enlace de recuperación.
+          </div>
+          <button type="submit" id="forgot-submit-btn" class="btn-primary" style="width:100%; margin-top:15px;">Enviar
+            enlace</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Firebase App (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <!-- Firebase Auth (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <!-- Firebase Firestore (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Configuración Firebase (gitignored - no va a GitHub) -->
+  <script src="config.js?v=2"></script>
+
+  <script src="app.js?v=3.3"></script>
+</body>
+
+</html>
